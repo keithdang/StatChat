@@ -8,13 +8,6 @@ class Results extends React.Component {
     this.renderChart = this.renderChart.bind(this);
     this.state = {
       peopleChartData: [],
-      backgroundColors: [
-        "rgba(255,99,132,0.6)",
-        "rgba(54,162,235,0.6)",
-        "rgba(75,192,192,0.6)",
-        "rgba(255,206,86,0.6)",
-        "rgba(255,159,64,0.6)",
-      ],
     };
   }
   componentDidUpdate(prevProps) {
@@ -25,20 +18,13 @@ class Results extends React.Component {
   }
   assignDataPoint() {
     const { namesList } = this.props;
-    const { backgroundColors } = this.state;
     var dataArr = [];
-    var colorNum = 0;
     namesList.forEach((person) => {
       dataArr.push({
         name: person.text,
         time: person.speakingTime,
-        color: backgroundColors[colorNum],
+        color: person.color,
       });
-      if (colorNum === backgroundColors.length - 1) {
-        colorNum = 0;
-      } else {
-        colorNum++;
-      }
     });
     this.setState({
       peopleChartData: dataArr,
@@ -49,9 +35,11 @@ class Results extends React.Component {
     var dataArr = [];
     var labelArr = [];
     var colorArr = [];
-    peopleChartData.map((person) => {
+    peopleChartData.forEach((person) => {
       dataArr.push(person.time);
-      labelArr.push(person.name);
+      if (person.time > 0) {
+        labelArr.push(person.name);
+      }
       colorArr.push(person.color);
     });
     return (

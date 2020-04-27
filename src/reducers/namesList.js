@@ -10,6 +10,7 @@ const namesList = (state = [], action) => {
           text: action.text,
           isSpeaking: false,
           speakingTime: 0,
+          color: randomRbga(),
         },
       ];
     case SET_SPEAKER:
@@ -33,5 +34,20 @@ const namesList = (state = [], action) => {
       return state;
   }
 };
-
+function randomRbga() {
+  var o = Math.round,
+    r = Math.random,
+    s = 255;
+  return (
+    "rgba(" +
+    o(r() * s) +
+    "," +
+    o(r() * s) +
+    "," +
+    o(r() * s) +
+    "," +
+    r().toFixed(1) +
+    ")"
+  );
+}
 export default namesList;
