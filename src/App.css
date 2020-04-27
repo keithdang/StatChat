@@ -28,6 +28,20 @@
   color: #61dafb;
 }
 
+.Input-Div {
+  display: flex;
+}
+.listButton {
+  width: 180px;
+  font-size: inherit;
+}
+.addButton {
+  width: 150px;
+  padding: 5px;
+  font-size: medium;
+  font-weight: bold;
+  margin-left: 10px;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
