@@ -3,8 +3,10 @@
 }
 
 .App-logo {
-  height: 40vmin;
+  /* height: 40vmin; */
   pointer-events: none;
+  width: 150px;
+  height: 150px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -41,6 +43,14 @@
   font-size: medium;
   font-weight: bold;
   margin-left: 10px;
+}
+.Time-Display {
+  margin: 0px;
+  margin-left: 10px;
+}
+.Name-List {
+  display: flex;
+  padding: 5px;
 }
 @keyframes App-logo-spin {
   from {

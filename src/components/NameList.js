@@ -39,7 +39,7 @@ class NameList extends React.Component {
     return (
       <ul style={{ padding: 0 }}>
         {namesList.map((name) => (
-          <li key={name.id} style={{ display: "flex", padding: "5px" }}>
+          <li key={name.id} className="Name-List">
             <button
               className="listButton"
               style={name.isSpeaking ? { backgroundColor: "cadetblue" } : {}}
@@ -51,7 +51,7 @@ class NameList extends React.Component {
             >
               {name.text}
             </button>
-            <p style={{ margin: "0px", marginLeft: "10px" }}>
+            <p className="Time-Display">
               {name.isSpeaking
                 ? timeDisplay(this.state.currentSpeakerTime)
                 : timeDisplay(name.speakingTime)}

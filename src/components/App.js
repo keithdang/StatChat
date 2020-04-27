@@ -12,12 +12,7 @@ function App() {
       <header className="App-header">
         <div className="Input-Div">
           <Header />
-          <img
-            src={logo}
-            className="App-logo"
-            alt="logo"
-            style={{ width: "150px", height: "150px" }}
-          />
+          <img src={logo} className="App-logo" alt="logo" />
         </div>
         <div className="Input-Div">
           <div>
