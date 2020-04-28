@@ -1,38 +1,16 @@
-import React from "react";
+import Settings from "../components/Settings";
+import { addName, setEditMode, pauseAllSpeakers } from "../actions/index";
 import { connect } from "react-redux";
-import { addName, setEditMode, pauseAllSpeakers } from "../actions";
-import { FaEdit } from "react-icons/fa";
-const AddName = ({ dispatch }) => {
-  let input;
 
-  return (
-    <div className="Input-Div">
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          if (!input.value.trim()) {
-            return;
-          }
-          dispatch(addName(input.value));
-          input.value = "";
-        }}
-      >
-        <input ref={(node) => (input = node)} className="Input-Box" />
-        <button type="submit" className="addButton">
-          Add Name
-        </button>
-      </form>
-      <button
-        className="Edit-Mode-Button"
-        onClick={() => submitEditMode(dispatch)}
-      >
-        <FaEdit />
-      </button>
-    </div>
-  );
+const mapStateToProps = (state) => ({
+  editMode: state.editMode,
+});
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addName: (text) => dispatch(addName(text)),
+    setEditMode: () => dispatch(setEditMode()),
+    pauseAllSpeakers: () => dispatch(pauseAllSpeakers()),
+  };
 };
-function submitEditMode(dispatch) {
-  dispatch(setEditMode());
-  dispatch(pauseAllSpeakers());
-}
-export default connect()(AddName);
+export default connect(mapStateToProps, mapDispatchToProps)(Settings);

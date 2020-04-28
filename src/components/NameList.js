@@ -107,4 +107,5 @@ NameList.propTypes = {
   setSpeaker: PropTypes.func.isRequired,
   setTime: PropTypes.func.isRequired,
 };
+
 export default NameList;
