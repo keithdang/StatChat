@@ -36,11 +36,11 @@ class Results extends React.Component {
     var labelArr = [];
     var colorArr = [];
     peopleChartData.forEach((person) => {
-      dataArr.push(person.time);
       if (person.time > 0) {
+        dataArr.push(person.time);
         labelArr.push(person.name);
+        colorArr.push(person.color);
       }
-      colorArr.push(person.color);
     });
     return (
       <Chart
