@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { addName, setEditMode, pauseAllSpeakers } from "../actions";
-
+import { FaEdit } from "react-icons/fa";
 const AddName = ({ dispatch }) => {
   let input;
 
@@ -26,7 +26,7 @@ const AddName = ({ dispatch }) => {
         className="Edit-Mode-Button"
         onClick={() => submitEditMode(dispatch)}
       >
-        Edit
+        <FaEdit />
       </button>
     </div>
   );

@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import timeDisplay from "./TimeDisplay";
 import "../App.css";
-
+import { FaArrowCircleLeft } from "react-icons/fa";
 var t;
 class NameList extends React.Component {
   constructor(props, context) {
@@ -59,7 +59,7 @@ class NameList extends React.Component {
         }}
       >
         <button type="submit" className="Edit-Time-Button">
-          Change
+          <FaArrowCircleLeft />
         </button>
         <input ref={(node) => (input = node)} className="Edit-Time-Input-Box" />
       </form>
