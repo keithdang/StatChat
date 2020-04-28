@@ -1,12 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
-import { addName } from "../actions";
+import { addName, setEditMode, pauseAllSpeakers } from "../actions";
 
 const AddName = ({ dispatch }) => {
   let input;
 
   return (
-    <div>
+    <div className="Input-Div">
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -17,16 +17,22 @@ const AddName = ({ dispatch }) => {
           input.value = "";
         }}
       >
-        <input
-          ref={(node) => (input = node)}
-          style={{ height: "20px", padding: "5px", fontSize: "medium" }}
-        />
+        <input ref={(node) => (input = node)} className="Input-Box" />
         <button type="submit" className="addButton">
           Add Name
         </button>
       </form>
+      <button
+        className="Edit-Mode-Button"
+        onClick={() => submitEditMode(dispatch)}
+      >
+        Edit
+      </button>
     </div>
   );
 };
-
+function submitEditMode(dispatch) {
+  dispatch(setEditMode());
+  dispatch(pauseAllSpeakers());
+}
 export default connect()(AddName);

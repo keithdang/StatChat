@@ -33,12 +33,17 @@
 .Input-Div {
   display: flex;
 }
+.Input-Box {
+  height: 20px;
+  padding: 5px;
+  font-size: medium;
+}
 .listButton {
   width: 180px;
   font-size: inherit;
 }
 .addButton {
-  width: 150px;
+  width: 100px;
   padding: 5px;
   font-size: medium;
   font-weight: bold;
@@ -51,6 +56,29 @@
 .Name-List {
   display: flex;
   padding: 5px;
+}
+.Edit-Time-Button {
+  width: 80px;
+  padding: 5px;
+  font-size: medium;
+  font-weight: bold;
+  margin-left: 10px;
+}
+.Edit-Time-Input-Box {
+  width: 60px;
+  height: 15px;
+  padding: 5px;
+  margin-left: 10px;
+  font-size: medium;
+}
+.Edit-Mode-Button {
+  width: 60px;
+  padding: 5px;
+  height: 32px;
+  font-size: medium;
+  font-weight: bold;
+  margin-left: 10px;
+  margin-top: 5px;
 }
 @keyframes App-logo-spin {
   from {

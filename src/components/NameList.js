@@ -10,11 +10,15 @@ class NameList extends React.Component {
     this.state = {
       currentSpeakerTime: 0,
     };
-    this.first = this.first.bind(this);
+    this.first = this.submitTime.bind(this);
     this.add = this.add.bind(this);
     this.timer = this.timer.bind(this);
+    this.clearTimeFactors = this.clearTimeFactors.bind(this);
+    this.renderEditTime = this.renderEditTime.bind(this);
   }
-  first(person) {
+  submitTime(person) {
+    const { setSpeaker } = this.props;
+    setSpeaker(person.id, this.state.currentSpeakerTime);
     this.setState({
       currentSpeakerTime: person.speakingTime,
     });
@@ -22,6 +26,12 @@ class NameList extends React.Component {
     if (person.isSpeaking) {
       this.timer();
     }
+  }
+  clearTimeFactors() {
+    this.setState({
+      currentSpeakerTime: 0,
+    });
+    clearTimeout(t);
   }
   add() {
     var newTime = this.state.currentSpeakerTime + 1;
@@ -33,9 +43,30 @@ class NameList extends React.Component {
   timer() {
     t = setTimeout(this.add, 1000);
   }
+  renderEditTime(name) {
+    const { setTime } = this.props;
+    let input;
+    return (
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          if (!input.value.trim()) {
+            return;
+          }
+          setTime(name.id, parseInt(input.value));
+          this.clearTimeFactors();
+          input.value = "";
+        }}
+      >
+        <button type="submit" className="Edit-Time-Button">
+          Change
+        </button>
+        <input ref={(node) => (input = node)} className="Edit-Time-Input-Box" />
+      </form>
+    );
+  }
   render() {
-    const { namesList, setSpeaker } = this.props;
-
+    const { namesList, editMode } = this.props;
     return (
       <ul style={{ padding: 0 }}>
         {namesList.map((name) => (
@@ -44,9 +75,9 @@ class NameList extends React.Component {
               className="listButton"
               style={name.isSpeaking ? { backgroundColor: "cadetblue" } : {}}
               key={name.id}
+              disabled={editMode}
               onClick={() => {
-                setSpeaker(name.id, this.state.currentSpeakerTime);
-                this.first(name);
+                this.submitTime(name);
               }}
             >
               {name.text}
@@ -56,6 +87,7 @@ class NameList extends React.Component {
                 ? timeDisplay(this.state.currentSpeakerTime)
                 : timeDisplay(name.speakingTime)}
             </p>
+            {editMode && this.renderEditTime(name)}
           </li>
         ))}
       </ul>
@@ -71,6 +103,8 @@ NameList.propTypes = {
       isSpeaking: PropTypes.bool.isRequired,
     }).isRequired
   ).isRequired,
+  editMode: PropTypes.bool.isRequired,
   setSpeaker: PropTypes.func.isRequired,
+  setTime: PropTypes.func.isRequired,
 };
 export default NameList;

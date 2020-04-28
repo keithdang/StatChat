@@ -1,4 +1,9 @@
-import { ADD_NAME, SET_SPEAKER } from "../actions/types";
+import {
+  ADD_NAME,
+  SET_SPEAKER,
+  SET_TIME,
+  PAUSE_ALL_SPEAKERS,
+} from "../actions/types";
 
 const namesList = (state = [], action) => {
   switch (action.type) {
@@ -18,7 +23,7 @@ const namesList = (state = [], action) => {
         if (person.id === action.id) {
           if (person.isSpeaking) {
             person.isSpeaking = false;
-            person.speakingTime = action.time;
+            person.speakingTime = parseInt(action.time);
           } else {
             person.isSpeaking = true;
           }
@@ -28,6 +33,18 @@ const namesList = (state = [], action) => {
           }
           person.isSpeaking = false;
         }
+      });
+      return [...state];
+    case SET_TIME:
+      state.forEach((person) => {
+        if (person.id === action.id) {
+          person.speakingTime = action.time;
+        }
+      });
+      return [...state];
+    case PAUSE_ALL_SPEAKERS:
+      state.forEach((person) => {
+        person.isSpeaking = false;
       });
       return [...state];
     default:
