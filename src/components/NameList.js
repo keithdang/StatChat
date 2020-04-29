@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import timeDisplay from "./TimeDisplay";
+import EditTime from "./EditTime";
 import "../App.css";
-import { FaArrowCircleLeft } from "react-icons/fa";
 var t;
 class NameList extends React.Component {
   constructor(props, context) {
@@ -14,7 +14,12 @@ class NameList extends React.Component {
     this.add = this.add.bind(this);
     this.timer = this.timer.bind(this);
     this.clearTimeFactors = this.clearTimeFactors.bind(this);
-    this.renderEditTime = this.renderEditTime.bind(this);
+  }
+  componentDidUpdate(prevProps) {
+    const { editMode } = this.props;
+    if (editMode !== prevProps.editMode) {
+      this.clearTimeFactors();
+    }
   }
   submitTime(person) {
     const { setSpeaker } = this.props;
@@ -43,28 +48,6 @@ class NameList extends React.Component {
   timer() {
     t = setTimeout(this.add, 1000);
   }
-  renderEditTime(name) {
-    const { setTime } = this.props;
-    let input;
-    return (
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          if (!input.value.trim()) {
-            return;
-          }
-          setTime(name.id, parseInt(input.value));
-          this.clearTimeFactors();
-          input.value = "";
-        }}
-      >
-        <button type="submit" className="Edit-Time-Button">
-          <FaArrowCircleLeft />
-        </button>
-        <input ref={(node) => (input = node)} className="Edit-Time-Input-Box" />
-      </form>
-    );
-  }
   render() {
     const { namesList, editMode } = this.props;
     return (
@@ -87,7 +70,7 @@ class NameList extends React.Component {
                 ? timeDisplay(this.state.currentSpeakerTime)
                 : timeDisplay(name.speakingTime)}
             </p>
-            {editMode && this.renderEditTime(name)}
+            {editMode && <EditTime id={name.id} />}
           </li>
         ))}
       </ul>
