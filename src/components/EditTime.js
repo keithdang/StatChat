@@ -1,11 +1,9 @@
 import React from "react";
-import { connect } from "react-redux";
-import { setTime } from "../actions";
-import { FaArrowCircleLeft } from "react-icons/fa";
 import "../App.css";
+
 class EditTime extends React.Component {
   render() {
-    const { setTime, id } = this.props;
+    const { setTime, id, icon } = this.props;
     let input;
     return (
       <form
@@ -19,7 +17,7 @@ class EditTime extends React.Component {
         }}
       >
         <button type="submit" className="Edit-Time-Button">
-          <FaArrowCircleLeft />
+          {icon}
         </button>
         <input ref={(node) => (input = node)} className="Edit-Time-Input-Box" />
       </form>
@@ -27,9 +25,4 @@ class EditTime extends React.Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    setTime: (id, value) => dispatch(setTime(id, value)),
-  };
-};
-export default connect(null, mapDispatchToProps)(EditTime);
+export default EditTime;

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import timeDisplay from "./TimeDisplay";
 import EditTime from "./EditTime";
 import { MODES } from "../actions/types";
+import { FaArrowCircleLeft, FaPlusCircle, FaMinusCircle } from "react-icons/fa";
 import "../App.css";
 
 var t;
@@ -53,7 +54,7 @@ class NameList extends React.Component {
     t = setTimeout(this.add, 1000);
   }
   render() {
-    const { namesList, mode } = this.props;
+    const { namesList, mode, setTime, addTime, minusTime } = this.props;
     return (
       <ul style={{ padding: 0 }}>
         {namesList.map((name) => (
@@ -74,7 +75,27 @@ class NameList extends React.Component {
                 ? timeDisplay(this.state.currentSpeakerTime)
                 : timeDisplay(name.speakingTime)}
             </p>
-            {mode === MODES.EDIT_TIME && <EditTime id={name.id} />}
+            {mode === MODES.EDIT_TIME && (
+              <EditTime
+                id={name.id}
+                setTime={setTime}
+                icon={<FaArrowCircleLeft />}
+              />
+            )}
+            {mode === MODES.ADD_TIME && (
+              <EditTime
+                id={name.id}
+                setTime={addTime}
+                icon={<FaPlusCircle />}
+              />
+            )}
+            {mode === MODES.MINUS_TIME && (
+              <EditTime
+                id={name.id}
+                setTime={minusTime}
+                icon={<FaMinusCircle />}
+              />
+            )}
           </li>
         ))}
       </ul>
@@ -93,6 +114,8 @@ NameList.propTypes = {
   mode: PropTypes.string.isRequired,
   setSpeaker: PropTypes.func.isRequired,
   setTime: PropTypes.func.isRequired,
+  addTime: PropTypes.func.isRequired,
+  minusTime: PropTypes.func.isRequired,
 };
 
 export default NameList;

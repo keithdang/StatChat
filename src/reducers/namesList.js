@@ -1,5 +1,7 @@
 import {
   ADD_NAME,
+  ADD_TIME,
+  MINUS_TIME,
   SET_SPEAKER,
   SET_TIME,
   PAUSE_ALL_SPEAKERS,
@@ -39,6 +41,20 @@ const namesList = (state = [], action) => {
       state.forEach((person) => {
         if (person.id === action.id) {
           person.speakingTime = action.time;
+        }
+      });
+      return [...state];
+    case ADD_TIME:
+      state.forEach((person) => {
+        if (person.id === action.id) {
+          person.speakingTime += action.time;
+        }
+      });
+      return [...state];
+    case MINUS_TIME:
+      state.forEach((person) => {
+        if (person.id === action.id) {
+          person.speakingTime -= action.time;
         }
       });
       return [...state];

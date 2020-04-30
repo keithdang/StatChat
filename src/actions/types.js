@@ -8,10 +8,14 @@ export const SET_TIME = "set_time";
 
 export const SET_MODE = "set_mode";
 
+export const ADD_TIME = "add_time";
+
+export const MINUS_TIME = "minus_time";
+
 export const MODES = {
   DEFAULT: "default",
   EDIT_TIME: "edit_time",
-  ADD_TIME: "add_time",
-  MINUS_TIME: "minus_time",
+  ADD_TIME: "mode_add_time",
+  MINUS_TIME: "mode_minus_time",
   EDIT_NAME: "edit_name",
 };
