@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 const mapStateToProps = (state) => ({
   namesList: state.namesList,
-  editMode: state.editMode,
+  mode: state.mode,
 });
 
 const mapDispatchToProps = (dispatch) => {

@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 import namesList from "./namesList";
-import editMode from "./editMode";
+import mode from "./mode";
 export default combineReducers({
   namesList,
-  editMode,
+  mode,
 });

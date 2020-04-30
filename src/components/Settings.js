@@ -1,18 +1,24 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { FaEdit } from "react-icons/fa";
+import { MODES } from "../actions/types";
+
 class Settings extends React.Component {
   constructor(props, context) {
     super(props, context);
-    this.submitEditMode = this.submitEditMode.bind(this);
+    this.submitMode = this.submitMode.bind(this);
   }
-  submitEditMode() {
-    const { setEditMode, pauseAllSpeakers } = this.props;
-    setEditMode();
+  submitMode() {
+    const { pauseAllSpeakers, setMode, mode } = this.props;
+    if (mode === MODES.DEFAULT) {
+      setMode(MODES.EDIT_NAME);
+    } else {
+      setMode(MODES.DEFAULT);
+    }
     pauseAllSpeakers();
   }
   render() {
-    const { addName, editMode } = this.props;
+    const { addName, mode } = this.props;
     let input;
     return (
       <div className="Input-Div">
@@ -33,8 +39,10 @@ class Settings extends React.Component {
         </form>
         <button
           className="Edit-Mode-Button"
-          onClick={() => this.submitEditMode()}
-          style={editMode ? { backgroundColor: "deepskyblue" } : {}}
+          onClick={() => this.submitMode()}
+          style={
+            mode !== MODES.DEFAULT ? { backgroundColor: "deepskyblue" } : {}
+          }
         >
           <FaEdit />
         </button>
@@ -43,9 +51,9 @@ class Settings extends React.Component {
   }
 }
 Settings.propTypes = {
-  editMode: PropTypes.bool.isRequired,
+  mode: PropTypes.string.isRequired,
   addName: PropTypes.func.isRequired,
-  setEditMode: PropTypes.func.isRequired,
+  setMode: PropTypes.func.isRequired,
   pauseAllSpeakers: PropTypes.func.isRequired,
 };
 

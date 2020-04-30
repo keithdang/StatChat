@@ -2,7 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import timeDisplay from "./TimeDisplay";
 import EditTime from "./EditTime";
+import { MODES } from "../actions/types";
 import "../App.css";
+
 var t;
 class NameList extends React.Component {
   constructor(props, context) {
@@ -16,9 +18,11 @@ class NameList extends React.Component {
     this.clearTimeFactors = this.clearTimeFactors.bind(this);
   }
   componentDidUpdate(prevProps) {
-    const { editMode } = this.props;
-    if (editMode !== prevProps.editMode) {
-      this.clearTimeFactors();
+    const { mode } = this.props;
+    if (mode !== prevProps.mode) {
+      if (mode === MODES.DEFAULT) {
+        this.clearTimeFactors();
+      }
     }
   }
   submitTime(person) {
@@ -49,7 +53,7 @@ class NameList extends React.Component {
     t = setTimeout(this.add, 1000);
   }
   render() {
-    const { namesList, editMode } = this.props;
+    const { namesList, mode } = this.props;
     return (
       <ul style={{ padding: 0 }}>
         {namesList.map((name) => (
@@ -58,7 +62,7 @@ class NameList extends React.Component {
               className="listButton"
               style={name.isSpeaking ? { backgroundColor: "cadetblue" } : {}}
               key={name.id}
-              disabled={editMode}
+              disabled={mode !== MODES.DEFAULT}
               onClick={() => {
                 this.submitTime(name);
               }}
@@ -70,7 +74,7 @@ class NameList extends React.Component {
                 ? timeDisplay(this.state.currentSpeakerTime)
                 : timeDisplay(name.speakingTime)}
             </p>
-            {editMode && <EditTime id={name.id} />}
+            {mode === MODES.EDIT_NAME && <EditTime id={name.id} />}
           </li>
         ))}
       </ul>
@@ -86,7 +90,7 @@ NameList.propTypes = {
       isSpeaking: PropTypes.bool.isRequired,
     }).isRequired
   ).isRequired,
-  editMode: PropTypes.bool.isRequired,
+  mode: PropTypes.bool.isRequired,
   setSpeaker: PropTypes.func.isRequired,
   setTime: PropTypes.func.isRequired,
 };

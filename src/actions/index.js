@@ -1,9 +1,9 @@
 import {
   ADD_NAME,
   SET_SPEAKER,
-  SET_EDIT,
   SET_TIME,
   PAUSE_ALL_SPEAKERS,
+  SET_MODE,
 } from "./types";
 
 let nextNameId = 0;
@@ -29,6 +29,7 @@ export const pauseAllSpeakers = () => ({
   type: PAUSE_ALL_SPEAKERS,
 });
 
-export const setEditMode = () => ({
-  type: SET_EDIT,
+export const setMode = (mode) => ({
+  type: SET_MODE,
+  mode,
 });

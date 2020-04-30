@@ -6,4 +6,11 @@ export const PAUSE_ALL_SPEAKERS = "pause_all_speakers";
 
 export const SET_TIME = "set_time";
 
-export const SET_EDIT = "set_edit";
+export const SET_MODE = "set_mode";
+
+export const MODES = {
+  DEFAULT: "default",
+  EDIT_TIME: "edit_time",
+  ADD_MINUS_TIME: "add_minus_time",
+  EDIT_NAME: "edit_name",
+};
