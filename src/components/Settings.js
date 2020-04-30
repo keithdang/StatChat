@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { FaEdit } from "react-icons/fa";
 import { MODES } from "../actions/types";
+// import SubSettings from "./SubSettings";
+import SubSettingsContainer from "../containers/SubSettingsContainer";
 
 class Settings extends React.Component {
   constructor(props, context) {
@@ -11,7 +13,7 @@ class Settings extends React.Component {
   submitMode() {
     const { pauseAllSpeakers, setMode, mode } = this.props;
     if (mode === MODES.DEFAULT) {
-      setMode(MODES.EDIT_NAME);
+      setMode(MODES.EDIT_TIME);
     } else {
       setMode(MODES.DEFAULT);
     }
@@ -21,31 +23,34 @@ class Settings extends React.Component {
     const { addName, mode } = this.props;
     let input;
     return (
-      <div className="Input-Div">
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            if (!input.value.trim()) {
-              return;
+      <div>
+        <div className="Input-Div">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              if (!input.value.trim()) {
+                return;
+              }
+              addName(input.value);
+              input.value = "";
+            }}
+          >
+            <input ref={(node) => (input = node)} className="Input-Box" />
+            <button type="submit" className="addButton">
+              Add Name
+            </button>
+          </form>
+          <button
+            className="Edit-Mode-Button"
+            onClick={() => this.submitMode()}
+            style={
+              mode !== MODES.DEFAULT ? { backgroundColor: "deepskyblue" } : {}
             }
-            addName(input.value);
-            input.value = "";
-          }}
-        >
-          <input ref={(node) => (input = node)} className="Input-Box" />
-          <button type="submit" className="addButton">
-            Add Name
+          >
+            <FaEdit />
           </button>
-        </form>
-        <button
-          className="Edit-Mode-Button"
-          onClick={() => this.submitMode()}
-          style={
-            mode !== MODES.DEFAULT ? { backgroundColor: "deepskyblue" } : {}
-          }
-        >
-          <FaEdit />
-        </button>
+        </div>
+        {mode !== MODES.DEFAULT && <SubSettingsContainer />}
       </div>
     );
   }

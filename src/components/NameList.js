@@ -74,7 +74,7 @@ class NameList extends React.Component {
                 ? timeDisplay(this.state.currentSpeakerTime)
                 : timeDisplay(name.speakingTime)}
             </p>
-            {mode === MODES.EDIT_NAME && <EditTime id={name.id} />}
+            {mode === MODES.EDIT_TIME && <EditTime id={name.id} />}
           </li>
         ))}
       </ul>
@@ -90,7 +90,7 @@ NameList.propTypes = {
       isSpeaking: PropTypes.bool.isRequired,
     }).isRequired
   ).isRequired,
-  mode: PropTypes.bool.isRequired,
+  mode: PropTypes.string.isRequired,
   setSpeaker: PropTypes.func.isRequired,
   setTime: PropTypes.func.isRequired,
 };

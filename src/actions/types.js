@@ -11,6 +11,7 @@ export const SET_MODE = "set_mode";
 export const MODES = {
   DEFAULT: "default",
   EDIT_TIME: "edit_time",
-  ADD_MINUS_TIME: "add_minus_time",
+  ADD_TIME: "add_time",
+  MINUS_TIME: "minus_time",
   EDIT_NAME: "edit_name",
 };
