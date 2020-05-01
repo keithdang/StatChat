@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import timeDisplay from "./TimeDisplay";
-import EditTime from "./EditTime";
+import EditForm from "./EditForm";
 import { MODES } from "../actions/types";
 import {
   FaArrowCircleLeft,
@@ -65,37 +65,37 @@ class NameList extends React.Component {
     switch (mode) {
       case MODES.EDIT_TIME:
         return (
-          <EditTime
+          <EditForm
             id={id}
             mode={mode}
-            setTime={setTime}
+            modify={setTime}
             icon={<FaArrowCircleLeft />}
           />
         );
       case MODES.ADD_TIME:
         return (
-          <EditTime
+          <EditForm
             id={id}
             mode={mode}
-            setTime={addTime}
+            modify={addTime}
             icon={<FaPlusCircle />}
           />
         );
       case MODES.MINUS_TIME:
         return (
-          <EditTime
+          <EditForm
             id={id}
             mode={mode}
-            setTime={minusTime}
+            modify={minusTime}
             icon={<FaMinusCircle />}
           />
         );
       case MODES.EDIT_NAME:
         return (
-          <EditTime
+          <EditForm
             id={id}
             mode={mode}
-            setTime={editName}
+            modify={editName}
             icon={<FaPencilAlt />}
           />
         );
@@ -113,25 +113,25 @@ class NameList extends React.Component {
     const { namesList, mode } = this.props;
     return (
       <ul style={{ padding: 0 }}>
-        {namesList.map((name) => (
-          <li key={name.id} className="Name-List">
+        {namesList.map((person) => (
+          <li key={person.id} className="Name-List">
             <button
               className="listButton"
-              style={name.isSpeaking ? { backgroundColor: "cadetblue" } : {}}
-              key={name.id}
+              style={person.isSpeaking ? { backgroundColor: "cadetblue" } : {}}
+              key={person.id}
               disabled={mode !== MODES.DEFAULT}
               onClick={() => {
-                this.submitTime(name);
+                this.submitTime(person);
               }}
             >
-              {name.text}
+              {person.name}
             </button>
             <p className="Time-Display">
-              {name.isSpeaking
+              {person.isSpeaking
                 ? timeDisplay(this.state.currentSpeakerTime)
-                : timeDisplay(name.speakingTime)}
+                : timeDisplay(person.speakingTime)}
             </p>
-            {mode !== MODES.DEFAULT && this.renderEditMode(mode, name.id)}
+            {mode !== MODES.DEFAULT && this.renderEditMode(mode, person.id)}
           </li>
         ))}
       </ul>
@@ -143,7 +143,7 @@ NameList.propTypes = {
   namesList: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
-      text: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
       isSpeaking: PropTypes.bool.isRequired,
     }).isRequired
   ).isRequired,

@@ -11,10 +11,10 @@ import {
 } from "./types";
 
 let nextNameId = 0;
-export const addName = (text) => ({
+export const addName = (name) => ({
   type: ADD_NAME,
   id: nextNameId++,
-  text,
+  name,
 });
 
 export const deletePerson = (id) => ({

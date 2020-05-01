@@ -2,9 +2,9 @@ import React from "react";
 import { MODES } from "../actions/types";
 import "../App.css";
 
-class EditTime extends React.Component {
+class EditForm extends React.Component {
   render() {
-    const { setTime, id, icon, mode } = this.props;
+    const { modify, id, icon, mode } = this.props;
     let input;
     return (
       <form
@@ -14,9 +14,9 @@ class EditTime extends React.Component {
             return;
           }
           if (mode === MODES.EDIT_NAME) {
-            setTime(id, input.value);
+            modify(id, input.value);
           } else {
-            setTime(id, parseInt(input.value));
+            modify(id, parseInt(input.value));
           }
           input.value = "";
         }}
@@ -30,4 +30,4 @@ class EditTime extends React.Component {
   }
 }
 
-export default EditTime;
+export default EditForm;

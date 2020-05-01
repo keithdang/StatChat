@@ -8,7 +8,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addName: (text) => dispatch(addName(text)),
+    addName: (name) => dispatch(addName(name)),
     setMode: (mode) => dispatch(setMode(mode)),
     pauseAllSpeakers: () => dispatch(pauseAllSpeakers()),
   };

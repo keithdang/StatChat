@@ -21,7 +21,7 @@ class Results extends React.Component {
     var dataArr = [];
     namesList.forEach((person) => {
       dataArr.push({
-        name: person.text,
+        name: person.name,
         time: person.speakingTime,
         color: person.color,
       });

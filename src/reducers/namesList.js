@@ -16,7 +16,7 @@ const namesList = (state = [], action) => {
         ...state,
         {
           id: action.id,
-          text: action.text,
+          name: action.name,
           isSpeaking: false,
           speakingTime: 0,
           color: randomRbga(),
@@ -70,7 +70,7 @@ const namesList = (state = [], action) => {
     case EDIT_NAME:
       state.forEach((person) => {
         if (person.id === action.id) {
-          person.text = action.name;
+          person.name = action.name;
         }
       });
       return [...state];

@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import { FaEdit } from "react-icons/fa";
 import { MODES } from "../actions/types";
-// import SubSettings from "./SubSettings";
 import SubSettingsContainer from "../containers/SubSettingsContainer";
 
 class Settings extends React.Component {
