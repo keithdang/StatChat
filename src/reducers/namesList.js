@@ -1,6 +1,7 @@
 import {
   ADD_NAME,
   ADD_TIME,
+  CHANGE_COLOR,
   EDIT_NAME,
   MINUS_TIME,
   SET_SPEAKER,
@@ -22,6 +23,13 @@ const namesList = (state = [], action) => {
           color: randomRbga(),
         },
       ];
+    case CHANGE_COLOR:
+      state.forEach((person) => {
+        if (person.id === action.id) {
+          person.color = randomRbga();
+        }
+      });
+      return [...state];
     case SET_SPEAKER:
       state.forEach((person) => {
         if (person.id === action.id) {

@@ -1,5 +1,6 @@
 import {
   ADD_NAME,
+  CHANGE_COLOR,
   DELETE_PERSON,
   SET_SPEAKER,
   SET_TIME,
@@ -50,6 +51,11 @@ export const editName = (id, name) => ({
   type: EDIT_NAME,
   id,
   name,
+});
+
+export const changeColor = (id) => ({
+  type: CHANGE_COLOR,
+  id,
 });
 
 export const pauseAllSpeakers = () => ({

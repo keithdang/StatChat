@@ -7,6 +7,7 @@ import {
   FaClock,
   FaUserEdit,
   FaUserMinus,
+  FaPalette,
 } from "react-icons/fa";
 import { MODES } from "../actions/types";
 
@@ -39,6 +40,11 @@ class SubSettings extends React.Component {
           type: MODES.DELETE_PERSON,
           color: "deepskyblue",
           icon: <FaUserMinus />,
+        },
+        {
+          type: MODES.CHANGE_COLOR,
+          color: "deepskyblue",
+          icon: <FaPalette />,
         },
       ],
     };

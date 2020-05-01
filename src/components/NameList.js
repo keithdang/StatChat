@@ -9,6 +9,7 @@ import {
   FaMinusCircle,
   FaTrashAlt,
   FaPencilAlt,
+  FaPaintBrush,
 } from "react-icons/fa";
 import "../App.css";
 
@@ -61,7 +62,14 @@ class NameList extends React.Component {
     t = setTimeout(this.add, 1000);
   }
   renderEditMode(mode, id) {
-    const { setTime, addTime, minusTime, deletePerson, editName } = this.props;
+    const {
+      setTime,
+      addTime,
+      minusTime,
+      changeColor,
+      deletePerson,
+      editName,
+    } = this.props;
     switch (mode) {
       case MODES.EDIT_TIME:
         return (
@@ -103,6 +111,12 @@ class NameList extends React.Component {
         return (
           <button className="Edit-Mode-Button" onClick={() => deletePerson(id)}>
             <FaTrashAlt />
+          </button>
+        );
+      case MODES.CHANGE_COLOR:
+        return (
+          <button className="Edit-Mode-Button" onClick={() => changeColor(id)}>
+            <FaPaintBrush />
           </button>
         );
       default:
@@ -154,6 +168,7 @@ NameList.propTypes = {
   editName: PropTypes.func.isRequired,
   minusTime: PropTypes.func.isRequired,
   deletePerson: PropTypes.func.isRequired,
+  changeColor: PropTypes.func.isRequired,
 };
 
 export default NameList;

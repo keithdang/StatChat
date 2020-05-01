@@ -16,10 +16,13 @@ export const DELETE_PERSON = "delete_person";
 
 export const EDIT_NAME = "edit_name";
 
+export const CHANGE_COLOR = "change_color";
+
 export const MODES = {
   DEFAULT: "default",
   EDIT_TIME: "edit_time",
   ADD_TIME: "mode_add_time",
+  CHANGE_COLOR: "mode_change_color",
   MINUS_TIME: "mode_minus_time",
   EDIT_NAME: "mode_edit_name",
   DELETE_PERSON: "mode_delete_person",
