@@ -1,5 +1,6 @@
 import {
   ADD_NAME,
+  DELETE_PERSON,
   SET_SPEAKER,
   SET_TIME,
   PAUSE_ALL_SPEAKERS,
@@ -13,6 +14,11 @@ export const addName = (text) => ({
   type: ADD_NAME,
   id: nextNameId++,
   text,
+});
+
+export const deletePerson = (id) => ({
+  type: DELETE_PERSON,
+  id,
 });
 
 export const setSpeaker = (id, time) => ({

@@ -1,5 +1,11 @@
 import NameList from "../components/NameList";
-import { setSpeaker, setTime, addTime, minusTime } from "../actions/index";
+import {
+  setSpeaker,
+  setTime,
+  addTime,
+  minusTime,
+  deletePerson,
+} from "../actions/index";
 import { connect } from "react-redux";
 
 const mapStateToProps = (state) => ({
@@ -13,6 +19,7 @@ const mapDispatchToProps = (dispatch) => {
     setTime: (id, time) => dispatch(setTime(id, time)),
     addTime: (id, time) => dispatch(addTime(id, time)),
     minusTime: (id, time) => dispatch(minusTime(id, time)),
+    deletePerson: (id) => dispatch(deletePerson(id)),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(NameList);

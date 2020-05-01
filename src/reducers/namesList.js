@@ -5,6 +5,7 @@ import {
   SET_SPEAKER,
   SET_TIME,
   PAUSE_ALL_SPEAKERS,
+  DELETE_PERSON,
 } from "../actions/types";
 
 const namesList = (state = [], action) => {
@@ -63,6 +64,8 @@ const namesList = (state = [], action) => {
         person.isSpeaking = false;
       });
       return [...state];
+    case DELETE_PERSON:
+      return [...state.filter((person) => person.id !== action.id)];
     default:
       return state;
   }

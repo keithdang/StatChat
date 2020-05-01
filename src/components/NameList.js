@@ -3,7 +3,12 @@ import PropTypes from "prop-types";
 import timeDisplay from "./TimeDisplay";
 import EditTime from "./EditTime";
 import { MODES } from "../actions/types";
-import { FaArrowCircleLeft, FaPlusCircle, FaMinusCircle } from "react-icons/fa";
+import {
+  FaArrowCircleLeft,
+  FaPlusCircle,
+  FaMinusCircle,
+  FaTrashAlt,
+} from "react-icons/fa";
 import "../App.css";
 
 var t;
@@ -17,6 +22,7 @@ class NameList extends React.Component {
     this.add = this.add.bind(this);
     this.timer = this.timer.bind(this);
     this.clearTimeFactors = this.clearTimeFactors.bind(this);
+    this.renderEditMode = this.renderEditMode.bind(this);
   }
   componentDidUpdate(prevProps) {
     const { mode } = this.props;
@@ -53,8 +59,31 @@ class NameList extends React.Component {
   timer() {
     t = setTimeout(this.add, 1000);
   }
+  renderEditMode(mode, id) {
+    const { setTime, addTime, minusTime, deletePerson } = this.props;
+    switch (mode) {
+      case MODES.EDIT_TIME:
+        return (
+          <EditTime id={id} setTime={setTime} icon={<FaArrowCircleLeft />} />
+        );
+      case MODES.ADD_TIME:
+        return <EditTime id={id} setTime={addTime} icon={<FaPlusCircle />} />;
+      case MODES.MINUS_TIME:
+        return (
+          <EditTime id={id} setTime={minusTime} icon={<FaMinusCircle />} />
+        );
+      case MODES.DELETE_PERSON:
+        return (
+          <button className="Edit-Mode-Button" onClick={() => deletePerson(id)}>
+            <FaTrashAlt />
+          </button>
+        );
+      default:
+        return;
+    }
+  }
   render() {
-    const { namesList, mode, setTime, addTime, minusTime } = this.props;
+    const { namesList, mode } = this.props;
     return (
       <ul style={{ padding: 0 }}>
         {namesList.map((name) => (
@@ -75,27 +104,7 @@ class NameList extends React.Component {
                 ? timeDisplay(this.state.currentSpeakerTime)
                 : timeDisplay(name.speakingTime)}
             </p>
-            {mode === MODES.EDIT_TIME && (
-              <EditTime
-                id={name.id}
-                setTime={setTime}
-                icon={<FaArrowCircleLeft />}
-              />
-            )}
-            {mode === MODES.ADD_TIME && (
-              <EditTime
-                id={name.id}
-                setTime={addTime}
-                icon={<FaPlusCircle />}
-              />
-            )}
-            {mode === MODES.MINUS_TIME && (
-              <EditTime
-                id={name.id}
-                setTime={minusTime}
-                icon={<FaMinusCircle />}
-              />
-            )}
+            {mode !== MODES.DEFAULT && this.renderEditMode(mode, name.id)}
           </li>
         ))}
       </ul>
@@ -116,6 +125,7 @@ NameList.propTypes = {
   setTime: PropTypes.func.isRequired,
   addTime: PropTypes.func.isRequired,
   minusTime: PropTypes.func.isRequired,
+  deletePerson: PropTypes.func.isRequired,
 };
 
 export default NameList;

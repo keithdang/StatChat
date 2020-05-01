@@ -31,7 +31,7 @@ class SubSettings extends React.Component {
           icon: <FaMinus />,
         },
         {
-          type: MODES.EDIT_NAME,
+          type: MODES.DELETE_PERSON,
           color: "deepskyblue",
           icon: <FaUserMinus />,
         },
