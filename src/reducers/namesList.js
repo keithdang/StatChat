@@ -46,6 +46,7 @@ const namesList = (state = [], action) => {
           person.isSpeaking = false;
         }
       });
+      state.sort(timeSort);
       return [...state];
     case SET_TIME:
       state.forEach((person) => {
@@ -53,6 +54,7 @@ const namesList = (state = [], action) => {
           person.speakingTime = action.time;
         }
       });
+      state.sort(timeSort);
       return [...state];
     case ADD_TIME:
       state.forEach((person) => {
@@ -60,6 +62,7 @@ const namesList = (state = [], action) => {
           person.speakingTime += action.time;
         }
       });
+      state.sort(timeSort);
       return [...state];
     case MINUS_TIME:
       state.forEach((person) => {
@@ -67,6 +70,7 @@ const namesList = (state = [], action) => {
           person.speakingTime -= action.time;
         }
       });
+      state.sort(timeSort);
       return [...state];
     case PAUSE_ALL_SPEAKERS:
       state.forEach((person) => {
@@ -101,5 +105,8 @@ function randomRbga() {
     r().toFixed(1) +
     ")"
   );
+}
+function timeSort(p1, p2) {
+  return p2.speakingTime - p1.speakingTime;
 }
 export default namesList;
