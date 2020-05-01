@@ -81,6 +81,10 @@
   margin-left: 10px;
   margin-top: 5px;
 }
+.Mode-Popup {
+  width: 70px;
+  font-size: medium;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

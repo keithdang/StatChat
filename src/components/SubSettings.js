@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Popup } from "semantic-ui-react";
 import {
   FaEdit,
   FaPlus,
@@ -18,33 +19,39 @@ class SubSettings extends React.Component {
       modeOb: [
         {
           type: MODES.EDIT_TIME,
-          color: "deepskyblue",
+          color: "cornflowerblue",
           icon: <FaClock />,
+          text: "Edit Time",
         },
         {
           type: MODES.ADD_TIME,
-          color: "deepskyblue",
+          color: "palegreen",
           icon: <FaPlus />,
+          text: "Add Time",
         },
         {
           type: MODES.MINUS_TIME,
-          color: "deepskyblue",
+          color: "orange",
           icon: <FaMinus />,
+          text: "Minus Time",
         },
         {
           type: MODES.EDIT_NAME,
-          color: "deepskyblue",
+          color: "yellow",
           icon: <FaUserEdit />,
+          text: "Edit Name",
         },
         {
           type: MODES.DELETE_PERSON,
-          color: "deepskyblue",
+          color: "crimson",
           icon: <FaUserMinus />,
+          text: "Delete",
         },
         {
           type: MODES.CHANGE_COLOR,
-          color: "deepskyblue",
+          color: "violet",
           icon: <FaPalette />,
+          text: "Change Color",
         },
       ],
     };
@@ -54,14 +61,27 @@ class SubSettings extends React.Component {
   renderButton(modeOb) {
     const { mode, setMode } = this.props;
     return (
-      <button
-        key={modeOb.type}
-        className="Edit-Mode-Button"
-        onClick={() => setMode(modeOb.type)}
-        style={mode === modeOb.type ? { backgroundColor: modeOb.color } : {}}
-      >
-        {modeOb.icon}
-      </button>
+      <Popup
+        content={
+          <button key={modeOb.type} className="Mode-Popup">
+            {modeOb.text}
+          </button>
+        }
+        position="bottom center"
+        style={{ fontSize: "small" }}
+        trigger={
+          <button
+            key={modeOb.type}
+            className="Edit-Mode-Button"
+            onClick={() => setMode(modeOb.type)}
+            style={
+              mode === modeOb.type ? { backgroundColor: modeOb.color } : {}
+            }
+          >
+            {modeOb.icon}
+          </button>
+        }
+      />
     );
   }
   render() {
