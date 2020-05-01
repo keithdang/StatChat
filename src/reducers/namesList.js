@@ -1,6 +1,7 @@
 import {
   ADD_NAME,
   ADD_TIME,
+  EDIT_NAME,
   MINUS_TIME,
   SET_SPEAKER,
   SET_TIME,
@@ -66,6 +67,13 @@ const namesList = (state = [], action) => {
       return [...state];
     case DELETE_PERSON:
       return [...state.filter((person) => person.id !== action.id)];
+    case EDIT_NAME:
+      state.forEach((person) => {
+        if (person.id === action.id) {
+          person.text = action.name;
+        }
+      });
+      return [...state];
     default:
       return state;
   }

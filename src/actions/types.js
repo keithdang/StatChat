@@ -14,11 +14,13 @@ export const MINUS_TIME = "minus_time";
 
 export const DELETE_PERSON = "delete_person";
 
+export const EDIT_NAME = "edit_name";
+
 export const MODES = {
   DEFAULT: "default",
   EDIT_TIME: "edit_time",
   ADD_TIME: "mode_add_time",
   MINUS_TIME: "mode_minus_time",
-  EDIT_NAME: "edit_name",
+  EDIT_NAME: "mode_edit_name",
   DELETE_PERSON: "mode_delete_person",
 };

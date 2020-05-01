@@ -8,6 +8,7 @@ import {
   FaPlusCircle,
   FaMinusCircle,
   FaTrashAlt,
+  FaPencilAlt,
 } from "react-icons/fa";
 import "../App.css";
 
@@ -60,17 +61,43 @@ class NameList extends React.Component {
     t = setTimeout(this.add, 1000);
   }
   renderEditMode(mode, id) {
-    const { setTime, addTime, minusTime, deletePerson } = this.props;
+    const { setTime, addTime, minusTime, deletePerson, editName } = this.props;
     switch (mode) {
       case MODES.EDIT_TIME:
         return (
-          <EditTime id={id} setTime={setTime} icon={<FaArrowCircleLeft />} />
+          <EditTime
+            id={id}
+            mode={mode}
+            setTime={setTime}
+            icon={<FaArrowCircleLeft />}
+          />
         );
       case MODES.ADD_TIME:
-        return <EditTime id={id} setTime={addTime} icon={<FaPlusCircle />} />;
+        return (
+          <EditTime
+            id={id}
+            mode={mode}
+            setTime={addTime}
+            icon={<FaPlusCircle />}
+          />
+        );
       case MODES.MINUS_TIME:
         return (
-          <EditTime id={id} setTime={minusTime} icon={<FaMinusCircle />} />
+          <EditTime
+            id={id}
+            mode={mode}
+            setTime={minusTime}
+            icon={<FaMinusCircle />}
+          />
+        );
+      case MODES.EDIT_NAME:
+        return (
+          <EditTime
+            id={id}
+            mode={mode}
+            setTime={editName}
+            icon={<FaPencilAlt />}
+          />
         );
       case MODES.DELETE_PERSON:
         return (
@@ -124,6 +151,7 @@ NameList.propTypes = {
   setSpeaker: PropTypes.func.isRequired,
   setTime: PropTypes.func.isRequired,
   addTime: PropTypes.func.isRequired,
+  editName: PropTypes.func.isRequired,
   minusTime: PropTypes.func.isRequired,
   deletePerson: PropTypes.func.isRequired,
 };

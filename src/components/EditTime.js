@@ -1,9 +1,10 @@
 import React from "react";
+import { MODES } from "../actions/types";
 import "../App.css";
 
 class EditTime extends React.Component {
   render() {
-    const { setTime, id, icon } = this.props;
+    const { setTime, id, icon, mode } = this.props;
     let input;
     return (
       <form
@@ -12,7 +13,11 @@ class EditTime extends React.Component {
           if (!input.value.trim()) {
             return;
           }
-          setTime(id, parseInt(input.value));
+          if (mode === MODES.EDIT_NAME) {
+            setTime(id, input.value);
+          } else {
+            setTime(id, parseInt(input.value));
+          }
           input.value = "";
         }}
       >

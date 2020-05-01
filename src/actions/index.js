@@ -7,6 +7,7 @@ import {
   SET_MODE,
   ADD_TIME,
   MINUS_TIME,
+  EDIT_NAME,
 } from "./types";
 
 let nextNameId = 0;
@@ -43,6 +44,12 @@ export const minusTime = (id, time) => ({
   type: MINUS_TIME,
   id,
   time,
+});
+
+export const editName = (id, name) => ({
+  type: EDIT_NAME,
+  id,
+  name,
 });
 
 export const pauseAllSpeakers = () => ({
